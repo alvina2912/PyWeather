@@ -1,20 +1,15 @@
-import urllib
+
 import json
-import ctypes
+
 import easygui
 
 
 def Mbox(msg):
      easygui.msgbox(msg, title="Weather Condition", ok_button="OK")
 
-serviceurl = 'http://api.openweathermap.org/data/2.5/weather?q=MapleGrove%20USA&appid=44db6a862fba0b067b1930da0d769e98'
+data=open('sample.json')
+js = json.load(data)
 
-uh = urllib.urlopen(serviceurl)
-data = uh.read()
-#data=open('sample.json')
-
-try: js = json.loads(str(data))
-except: js = None
 
 print json.dumps(js,indent=4)
 id_=js['weather'][0]['id']
@@ -34,4 +29,4 @@ if (id_==800 or id_==200 or id_==201 or id_==202 or id_==211 or id_==212
    or id_==751 or id_==761 or id_==771 or id_==781 or id_==900 or id_==901
    or id_==902 or id_==903 or id_==904 or id_==905 or id_==906 or id_==960
    or id_==961 or id_==962):
-    Mbox(msg)
+   Mbox(msg)
