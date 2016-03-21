@@ -11,7 +11,11 @@ def getMsg():
     if msg is not  None:
         imgName=WeatherIcon.getImg(id_)
         WeatherUI.Mbox(imgName,msg)
-        time.sleep(60)
+        iterationTime=sys.argv
+        t=int(iterationTime[1])
+        if t==None:
+            t=1
+        time.sleep(t*60)
 
 while True:
     getMsg()
