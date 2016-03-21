@@ -1,9 +1,14 @@
 import WeatherAPI
+import WeatherConfig
 
 def getImg(id_):
-    id_=id_
     imgName=""
-    if id_ in [200,201,202,211,212,221,230,231,232,210]:
+    if id_ in WeatherConfig.codes:
+        imgName=WeatherConfig.codes[id_]
+    return imgName    
+
+    '''imgName=""
+    if id_ in [200,201,202,211,212,221,230,231,232,210,960,901,961]:
         imgName="Storm"
     elif id_ == 701 :
         imgName="Mist1"
@@ -13,6 +18,12 @@ def getImg(id_):
         imgName="Snow"
     elif id_ in [801,802,803,804 ]:
         imgName="Cloudy"
+    elif id_ in [781,900]:
+        imgName="tornado"
+    elif id_ in [902,962]:
+        imgName="hurricane"
+    elif id_ == 905:
+        imgName="wind"
     elif id_ ==800 :
         imgName="Sunny"
-    return imgName
+    return imgName'''

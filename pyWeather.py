@@ -1,37 +1,17 @@
-import urllib
-import json
-import ctypes
-import easygui
+import sys
+sys.path.append('/Users/rogerpereira/Documents/Projects/PyWeather/Moduls')
 
+import time
+import WeatherAPI
+import WeatherUI
+import WeatherIcon
 
-def Mbox(msg):
-     easygui.msgbox(msg, title="Weather Condition", ok_button="OK")
+id_ ,msg = WeatherAPI.getInfo()
+def getMsg():
+    if msg is not  None:
+        imgName=WeatherIcon.getImg(id_)
+        WeatherUI.Mbox(imgName,msg)
+        time.sleep(60)
 
-serviceurl = 'http://api.openweathermap.org/data/2.5/weather?q=MapleGrove%20USA&appid=44db6a862fba0b067b1930da0d769e98'
-
-uh = urllib.urlopen(serviceurl)
-data = uh.read()
-#data=open('sample.json')
-
-try: js = json.loads(str(data))
-except: js = None
-
-print json.dumps(js,indent=4)
-id_=js['weather'][0]['id']
-mainWeather=js['weather'][0]['main']
-description=js['weather'][0]['description']
-temp=js['main']['temp']
-print "ID : ",id_
-print "Main Weather : ", mainWeather
-print "Deacription : ",description
-print "Temprature : ",temp
-msg=mainWeather+"--"+description
-
-if (id_==800 or id_==200 or id_==201 or id_==202 or id_==211 or id_==212
-   or id_==221 or id_==231 or id_==231 or id_==232 or id_==312 or id_==314
-   or id_==502 or id_==503 or id_==504 or id_==511 or id_==522 or id_== 602
-   or id_==622 or id_==701 or id_==711 or id_==721 or id_==731 or id_==741
-   or id_==751 or id_==761 or id_==771 or id_==781 or id_==900 or id_==901
-   or id_==902 or id_==903 or id_==904 or id_==905 or id_==906 or id_==960
-   or id_==961 or id_==962):
-    Mbox(msg)
+while True:
+    getMsg()
