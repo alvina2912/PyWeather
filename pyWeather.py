@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/rogerpereira/Documents/Projects/PyWeather/Moduls')
+sys.path.append('Modules')
 
 import time
 import WeatherAPI
@@ -7,15 +7,16 @@ import WeatherUI
 import WeatherIcon
 
 id_ ,msg = WeatherAPI.getInfo()
+arguments=sys.argv
+t = 1
+if len(arguments) > 1:
+    t=int(arguments[1])
+t = t * 60
 def getMsg():
     if msg is not  None:
         imgName=WeatherIcon.getImg(id_)
         WeatherUI.Mbox(imgName,msg)
-        iterationTime=sys.argv
-        t=int(iterationTime[1])
-        if t==None:
-            t=1
-        time.sleep(t*60)
+        time.sleep(t)
 
-while True:
+while(True):
     getMsg()
