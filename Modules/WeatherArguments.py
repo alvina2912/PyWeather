@@ -1,24 +1,15 @@
 def parsingArguments(arguments):
 
-    mydict={'mode':'UI',
+    mydict={'mode':'EMAIL',
             'timeInterval':1,
             'sender' : 'abc@gmail.com',
             'password':'123abc',
             'receiver':'abc',
-            'location':'MapleGrove'
+            'location':'MapleGrove,USA',
+            'apiid':'12ab'
             }
     for i in arguments[1:]:
         k,v=i.split(":")
-        if k=='mode':
-            mydict[k]=v
-        elif k=='timeInterval':
-            mydict[k]=v
-        elif k=='sender':
-            mydict[k]=v
-        elif k=='password':
-            mydict[k]=v
-        elif k=='receiver':
-            mydict[k]=v
-        elif k=='location':
+        if k in mydict.keys():
             mydict[k]=v
     return mydict

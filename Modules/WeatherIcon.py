@@ -6,5 +6,3 @@ def getImg(id_):
     if id_ in WeatherConfig.codes:
         imgName=WeatherConfig.codes[id_]
     return imgName
-
-    

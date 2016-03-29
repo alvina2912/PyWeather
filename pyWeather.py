@@ -19,27 +19,24 @@ sender=mydict['sender']
 receiver=mydict['receiver']
 password=mydict['password']
 location=mydict['location']
-url=WeatherConfig.setLocation(location)
+city,country=location.split(",")
+timeInterval=int(mydict['timeInterval'])
+apiid=mydict['apiid']
+timeInterval = timeInterval * 60
+print mode,sender,receiver,password,location
+url=WeatherConfig.url.format(city,country,apiid)
 id_ , description , mainTemp = WeatherAPI.getInfo(url)
 
 
-
-
 def getMsg():
-    timeInterval=int(mydict['timeInterval'])
-    timeInterval = timeInterval * 60
     if description is not  None:
-        imgName=WeatherIcon.getImg(id_)
-        WeatherUI.Mbox(imgName,description,mainTemp)
-        time.sleep(timeInterval)
+        if mode=="UI":
+            imgName=WeatherIcon.getImg(id_)
+            WeatherUI.Mbox(imgName,description,mainTemp)
+            time.sleep(timeInterval)
+        elif mode=="EMAIL":
+            WeatherEmailNotification.sendEmail(description,mainTemp,sender,receiver,password)
+            time.sleep(timeInterval)
 
-def getEmail():
-    if description is not  None:
-        WeatherEmailNotification.sendEmail(description,mainTemp,sender,receiver,password)
-
-
-if mode=='UI':
-    while True:
+while True:
         getMsg()
-elif mode=="EMAIL":
-    getEmail()
