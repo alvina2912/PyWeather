@@ -5,18 +5,38 @@ import time
 import WeatherAPI
 import WeatherUI
 import WeatherIcon
+import WeatherEmailNotification
+import WeatherArguments
+import WeatherConfig
 
-id_ ,msg = WeatherAPI.getInfo()
+
 arguments=sys.argv
-t = 1
-if len(arguments) > 1:
-    t=int(arguments[1])
-t = t * 60
-def getMsg():
-    if msg is not  None:
-        imgName=WeatherIcon.getImg(id_)
-        WeatherUI.Mbox(imgName,msg)
-        time.sleep(t)
+mydict={}
 
-while(True):
-    getMsg()
+mydict= WeatherArguments.parsingArguments(arguments)
+mode=mydict['mode']
+sender=mydict['sender']
+receiver=mydict['receiver']
+password=mydict['password']
+location=mydict['location']
+city,country=location.split(",")
+timeInterval=int(mydict['timeInterval'])
+apiid=mydict['apiid']
+timeInterval = timeInterval * 60
+print mode,sender,receiver,password,location
+url=WeatherConfig.url.format(city,country,apiid)
+id_ , description , mainTemp = WeatherAPI.getInfo(url)
+
+
+def getMsg():
+    if description is not  None:
+        if mode=="UI":
+            imgName=WeatherIcon.getImg(id_)
+            WeatherUI.Mbox(imgName,description,mainTemp)
+            time.sleep(timeInterval)
+        elif mode=="EMAIL":
+            WeatherEmailNotification.sendEmail(description,mainTemp,sender,receiver,password)
+            time.sleep(timeInterval)
+
+while True:
+        getMsg()
