@@ -1,6 +1,6 @@
 def parsingArguments(arguments):
 
-    mydict={'mode':'EMAIL',
+    argumentsDict={'mode':'EMAIL',
             'timeInterval':1,
             'sender' : 'abc@gmail.com',
             'password':'123abc',
@@ -10,6 +10,6 @@ def parsingArguments(arguments):
             }
     for i in arguments[1:]:
         k,v=i.split(":")
-        if k in mydict.keys():
-            mydict[k]=v
-    return mydict
+        if k in argumentsDict.keys():
+            argumentsDict[k]=v
+    return argumentsDict

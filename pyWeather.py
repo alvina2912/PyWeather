@@ -11,32 +11,30 @@ import WeatherConfig
 
 
 arguments=sys.argv
-mydict={}
+argumentsDict={}
 
-mydict= WeatherArguments.parsingArguments(arguments)
-mode=mydict['mode']
-sender=mydict['sender']
-receiver=mydict['receiver']
-password=mydict['password']
-location=mydict['location']
+argumentsDict= WeatherArguments.parsingArguments(arguments)
+mode=argumentsDict['mode']
+sender=argumentsDict['sender']
+receiver=argumentsDict['receiver']
+password=argumentsDict['password']
+location=argumentsDict['location']
 city,country=location.split(",")
-timeInterval=int(mydict['timeInterval'])
-apiid=mydict['apiid']
+timeInterval=int(argumentsDict['timeInterval'])
+apiid=argumentsDict['apiid']
 timeInterval = timeInterval * 60
-print mode,sender,receiver,password,location
 url=WeatherConfig.url.format(city,country,apiid)
 id_ , description , mainTemp = WeatherAPI.getInfo(url)
 
 
-def getMsg():
+
+def weatherNotification():
     if description is not  None:
         if mode=="UI":
             imgName=WeatherIcon.getImg(id_)
             WeatherUI.Mbox(imgName,description,mainTemp)
-            time.sleep(timeInterval)
         elif mode=="EMAIL":
             WeatherEmailNotification.sendEmail(description,mainTemp,sender,receiver,password)
-            time.sleep(timeInterval)
-
+        time.sleep(timeInterval)
 while True:
-        getMsg()
+        weatherNotification()

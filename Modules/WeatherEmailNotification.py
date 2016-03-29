@@ -1,7 +1,10 @@
 import smtplib,string
+import time
+
+currentTime=  (time.strftime("%I:%M:%S"))
 
 def sendEmail(description,mainTemp,sender,receiver,password):
-    Subj = "Weather condition"
+    Subj = "Weather condition at "+currentTime
     text="Todays Weather : "+description
     temp="Temprature : "+mainTemp+"F"
     Text = """ %s \n %s """ %(text,temp)
@@ -15,6 +18,6 @@ def sendEmail(description,mainTemp,sender,receiver,password):
 
     smtpobj=smtplib.SMTP_SSL('smtp.googlemail.com', 465)
     smtpobj.login(sender,password)
-    smtpobj.sendmail(sender,receiver,Body )
+    smtpobj.sendmail(sender,receiver.split(","),Body )
     print "Susscesfully email send"
     smtpobj.close()
