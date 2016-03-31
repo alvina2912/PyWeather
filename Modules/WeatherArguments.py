@@ -6,7 +6,8 @@ def parsingArguments(arguments):
             'password':'123abc',
             'receiver':'abc',
             'location':'MapleGrove,USA',
-            'apiid':'12ab'
+            'apiid':'12ab',
+            'weatherChoice':'normal'
             }
     for i in arguments[1:]:
         k,v=i.split(":")
