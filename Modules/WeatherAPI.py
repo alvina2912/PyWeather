@@ -16,10 +16,7 @@ def getInfo(url):
     description=js['weather'][0]['description']
     temp=js['main']['temp']
     mainTemp=1.8 * (temp - 273) + 32
-    print "ID : ",id_
-    print "Main Weather : ", mainWeather
-    print "Deacription : ",description
-    print "Temprature : ",mainTemp
+    
     description=description.title()
     mainTemp=str(mainTemp)
     return (id_ ,description,mainTemp)

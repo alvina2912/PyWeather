@@ -13,17 +13,21 @@ import WeatherConfig
 arguments=sys.argv
 argumentsDict={}
 
-argumentsDict= WeatherArguments.parsingArguments(arguments)
-mode=argumentsDict['mode']
-sender=argumentsDict['sender']
-receiver=argumentsDict['receiver']
-password=argumentsDict['password']
-location=argumentsDict['location']
-city,country=location.split(",")
-timeInterval=int(argumentsDict['timeInterval'])
-apiid=argumentsDict['apiid']
-weatherCondition=argumentsDict['weatherChoice']
+argumentsDict= WeatherArguments.parseArguments(arguments)
+print argumentsDict
+if argumentsDict==None:
+    sys.exit()
+else:
+    mode=argumentsDict['mode']
+    sender=argumentsDict['sender']
+    receiver=argumentsDict['receiver']
+    password=argumentsDict['password']
+    location=argumentsDict['location']
+    timeInterval=int(argumentsDict['timeInterval'])
+    apiid=argumentsDict['apiid']
+    weatherCondition=argumentsDict['weatherChoice']
 timeInterval = timeInterval * 60
+city,country=location.split(",")
 url=WeatherConfig.url.format(city,country,apiid)
 
 

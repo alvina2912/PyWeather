@@ -19,5 +19,5 @@ def sendEmail(description,mainTemp,sender,receiver,password):
     smtpobj=smtplib.SMTP_SSL('smtp.googlemail.com', 465)
     smtpobj.login(sender,password)
     smtpobj.sendmail(sender,receiver.split(","),Body )
-    print "Susscesfully email send"
+    
     smtpobj.close()
