@@ -1,4 +1,5 @@
 url = 'http://api.openweathermap.org/data/2.5/weather?q={}%20{}&appid={}'
+nextDayURL='http://api.openweathermap.org/data/2.5/forecast?q={}%20{}&mode=json&appid={}'
 
 
 codes={
