@@ -1,6 +1,6 @@
 
 # PyWeather
-A simple utility application to retrieve and notify current weather information via email or UI message box periodically. The application can be run as a daemon on mac or as a windows service on windows PC.
+A simple utility application to retrieve and notify current weather and next day weather information via email or UI message box periodically. The application can be run as a daemon on mac or as a windows service on windows PC.
 ## Author
 Alvina Pereira
 ## Prerequisites
@@ -28,7 +28,12 @@ The above command will run pyWeather with EMAIL mode and will retrieve weather i
       * __receiver__: Email notification receiver's email addresses separated by comma. For _EMAIL_ mode this argument is mandatory.
       * __weatherChoice__ : normal or severe. Default _normal_  
 
+## UI Mode output
+
 ![UI mode](UI.png "UI mode ")
+
+## EMAIL notification output
+
 ![EMAIL mode](EMAIL.png "Email notification")
 
 
