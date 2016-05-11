@@ -28,6 +28,10 @@ The above command will run pyWeather with EMAIL mode and will retrieve weather i
       * __receiver__: Email notification receiver's email addresses separated by comma. For _EMAIL_ mode this argument is mandatory.
       * __weatherChoice__ : normal or severe. Default _normal_  
 
+![UI mode](UI.png "UI mode ")
+![EMAIL mode](EMAIL.png "Email notification")
+
+
 
 ## Final Word
 
