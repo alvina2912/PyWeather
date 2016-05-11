@@ -1,7 +1,7 @@
 def parseArguments(arguments):
 
     argumentsDict={'mode':'EMAIL',
-            'timeInterval':1,
+            'timeInterval':60,
             'sender' : None,
             'password':None,
             'receiver':None,
